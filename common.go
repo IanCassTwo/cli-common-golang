@@ -197,11 +197,9 @@ func DefaultAutoComplete(ctx *cli.Context) {
 func GetEdgegridConfig(c *cli.Context) (edgegrid.Config, error) {
 	config, err := edgegrid.Init(c.GlobalString("edgerc"), c.GlobalString("section"))
 	if err != nil {
-		config.AccountKey = c.GlobalString("accountkey")
-		
 		return edgegrid.Config{}, cli.NewExitError(err.Error(), 1)
 	}
-
+	config.AccountKey = c.GlobalString("accountkey")
 	return config, nil
 }
 
